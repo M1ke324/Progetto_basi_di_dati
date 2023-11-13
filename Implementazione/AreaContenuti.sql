@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Visualizzazioni`(
 
 CREATE TABLE IF NOT EXISTS `Download`(
     `Cliente` VARCHAR(320) NOT NULL,
-    `Film` /*TO DO*/,
+    `Film` INT NOT NULL,
 
     --chiavi
     PRIMARY KEY (`Cliente`,`Film`),
@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `Abbonamenti` (
 CREATE TABLE IF NOT EXISTS `Fatturazione`(
     `Carta` DECIMAL (16,0) NOT NULL,
     `Abbonamenti` VARCHAR(8) NOT NULL,
-    `Validità` /*TO DO*/,
+    `Validità` BOOLEAN DEFAULT TRUE,
     `Data_scadenza` DATE DEFAULT /*TO DO DATA ODIERNA*/,
-    `Data_sottoscrizione` DATE DEFAULT /*TO DO DATA ODIERNA*/,
+    `Data_sottoscrizione` DATE DEFAULT /*TO DO CURRENT_TIMESTAMP  DATE_FORMAT(CURRENT_DATE, ‘%Y%m%d’)*/,
 
     --Chiavi
     PRIMARY KEY (`Carta`,`Abbonamenti`),
@@ -74,21 +74,21 @@ CREATE TABLE IF NOT EXISTS `Fatturazione`(
 CREATE TABLE IF NOT EXISTS `Dispositivo`(
     `Marchio` VARCHAR(50) NOT NULL,
     `Modello` VARCHAR(50) NOT NULL,
-    `Risoluzione` /*TO DO*/,
-    `Rapporto_schermo` /*TO DO*/,
+    `Risoluzione` VARCHAR(20) NOT NULL,
+    `Rapporto_schermo` VARCHAR(20) NOT NULL,
 
     --chaivi
     PRIMARY KEY (`Marchio`,`modello`),
 )
 
 CREATE TABLE IF NOT EXISTS `Log_connessioni`(
-    `Cliente` /*TO DO*/,
-    `Marchio_Dispositivo` /*TO DO*/,
-    `Modello_Dispositivo` /*TO DO*/,
-    `indirizzo_ip` /*TO DO*/,
-    `idCDN`/*TO DO*/,
-    `ora_data_fine_connessione` /*TO DO*/,
-    `ora_data_inizio_connessione` /*TO DO*/,
+    `Cliente` VARCHAR(320) NOT NULL,
+    `Marchio_Dispositivo` VARCHAR(50) NOT NULL,
+    `Modello_Dispositivo` VARCHAR(50) NOT NULL,
+    `idCDN`INT NOT NULL,
+    `indirizzo_ip` BINARY(4),
+    `ora_data_fine_connessione` DATETIME DEFAULT /*TO DO data odierna*/,
+    `ora_data_inizio_connessione` DATETIME DEFAULT NULL,
 
     --Chiavi
     PRIMARY KEY (`Cliente`,`Marchio_Dispositivo`,`Modello_Dispositivo`),
@@ -98,8 +98,8 @@ CREATE TABLE IF NOT EXISTS `Log_connessioni`(
 ) 
 
 CREATE TABLE IF NOT EXISTS `Formati_Supportati`(
-    `Marchio_Dispositivo` /*TO DO*/,
-    `Modello_Dispositivo`/*TO DO*/,
+    `Marchio_Dispositivo` VARCHAR(50) NOT NULL,
+    `Modello_Dispositivo`VARCHAR(50) NOT NULL,
     `Formati`/*TO DO*/,
 
     --Chiavi
