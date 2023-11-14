@@ -1,111 +1,186 @@
-CREATE TABLE IF NOT EXISTS `Cliente` (
-    `e-mail` VARCHAR(320) NOT NULL, --Lunghezza massima e-mail
-    `Nome` VARCHAR(50) NOT NULL,
-    `Cognome` VARCHAR(50) NOT NULL,
-    `Data_di_nascita` DATE NOT NULL,
-    `Password` VARCHAR(50) NOT NULL,
-    `Critico` BOOLEAN DEFAULT FALSE,
-    `situa` VARCHAR(2) NOT NULL,
+DROP DATABASE IF EXISTS `FilmSphere`;
+CREATE DATABASE `FilmSphere` DEFAULT CHARACTER SET utf8;
+USE 'FilmSphere';
+CREATE TABLE IF NOT EXISTS `Film` (
+    `id` INT AUTO_INCREMENT,
+    `Anno_di_produzione` YEAR NOT NULL,
+    `Descrizione` TEXT,
+    `Rating_media` DECIMAL(4,2),
+    `Durata` DECIMAL(10,2) NOT NULL,
+    `Titolo` TEXT NOT NULL,
+    `Prodotto` CHAR(2),
 
-    -- Chiavi
-    PRIMARY KEY (`e-mail`),
-    FOREIGN KEY (`situa`) REFERENCES `Regione_geografica`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE,
-)
-CREATE TABLE IF NOT EXISTS `Visualizzazioni`(
-    `Cliente` VARCHAR(320) NOT NULL,
-    `Film` /*TO DO*/,
-    `Numero_visualizzazioni` TINYINT DEFAULT 1, --max 255
-
-    --chiavi
-    PRIMARY KEY (`Cliente`,`Film`),
-    FOREIGN KEY (`Cliente`) REFERENCES `Cliente`(`e-mail`) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
-) 
-
-CREATE TABLE IF NOT EXISTS `Download`(
-    `Cliente` VARCHAR(320) NOT NULL,
-    `Film` INT NOT NULL,
-
-    --chiavi
-    PRIMARY KEY (`Cliente`,`Film`),
-    FOREIGN KEY (`Cliente`) REFERENCES `Cliente`(`e-mail`) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
-)
-
-CREATE TABLE IF NOT EXISTS `Carta` (
-    `Numero` DECIMAL (16,0) NOT NULL,
-    `Anno_scadenza` YEAR  NOT NULL,
-    `Mese_scadenza` DECIMAL (2,0) NOT NULL,
-    `CVV` DECIMAL(3,0) NOT NULL,
-    `Default` BOOLEAN DEFAULT FALSE,
-    `Cliente` VARCHAR(320) NOT NULL,
-
-    --chiavi
-    PRIMARY KEY (`Cliente`),
-    FOREIGN KEY (`Cliente`) REFERENCES `Cliente`(`e-mail`) ON UPDATE CASCADE ON DELETE CASCADE,
+    --Chiavi
+    PRIMARY KEY(`id`),
+    FOREIGN KEY (`Prodotto`) REFERENCES `Regione_geografica`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE,
 
     --Vincoli
-    CHECK (`Mese_scadenza`<13) AND (`Mese_scadenza`>0);
-)
+    CHECK (`Rating_media` BETWEEN 0.00 AND 10.00),
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Abbonamenti` (
-    `Tipologia` VARCHAR(8) NOT NULL,
-    `Risoluzione_max` VARCHAR(15) NOT NULL,
-    `Ore_max` SMALLINT, --NULL=illimitato
-    `Gigabyte_download` TINYINT, --NULL=illimitato
-    `Prezzo` FLOAT(4,2) DEFAULT 0.0 NOT NULL,
-
-    --Chiavi
-    PRIMARY KEY (`Tipologia`),
-) 
-
-CREATE TABLE IF NOT EXISTS `Fatturazione`(
-    `Carta` DECIMAL (16,0) NOT NULL,
-    `Abbonamenti` VARCHAR(8) NOT NULL,
-    `Validità` BOOLEAN DEFAULT TRUE,
-    `Data_scadenza` DATE DEFAULT /*TO DO DATA ODIERNA*/,
-    `Data_sottoscrizione` DATE DEFAULT /*TO DO CURRENT_TIMESTAMP  DATE_FORMAT(CURRENT_DATE, ‘%Y%m%d’)*/,
+CREATE TABLE IF NOT EXISTS `Recensioni_utenti` (
+    `Cliente` VARCHAR(320),
+    `Film`  INT,
+    `Rating` DECIMAL(4,2),
+    `Descrizione` TEXT,
 
     --Chiavi
-    PRIMARY KEY (`Carta`,`Abbonamenti`),
-    FOREIGN KEY (`Carta`) REFERENCES `Carta`(`Numero`),
-)
+    PRIMARY KEY (`Cliente`,`Film`),
+    FOREIGN KEY (`Cliente`) REFERENCES `Cliente`(`e-mail`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
 
-CREATE TABLE IF NOT EXISTS `Dispositivo`(
-    `Marchio` VARCHAR(50) NOT NULL,
-    `Modello` VARCHAR(50) NOT NULL,
-    `Risoluzione` VARCHAR(20) NOT NULL,
-    `Rapporto_schermo` VARCHAR(20) NOT NULL,
+    --Vincoli
+    CHECK (`Rating` BETWEEN 0.00 AND 10.00),
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
-    --chaivi
-    PRIMARY KEY (`Marchio`,`modello`),
-)
-
-CREATE TABLE IF NOT EXISTS `Log_connessioni`(
-    `Cliente` VARCHAR(320) NOT NULL,
-    `Marchio_Dispositivo` VARCHAR(50) NOT NULL,
-    `Modello_Dispositivo` VARCHAR(50) NOT NULL,
-    `idCDN`INT NOT NULL,
-    `indirizzo_ip` BINARY(4),
-    `ora_data_fine_connessione` DATETIME DEFAULT /*TO DO data odierna*/,
-    `ora_data_inizio_connessione` DATETIME DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `Recensioni_critici` (
+    `Cliente` VARCHAR(320),
+    `Film`  INT,
+    `Rating` DECIMAL(4,2),
+    `Descrizione` TEXT,
 
     --Chiavi
-    PRIMARY KEY (`Cliente`,`Marchio_Dispositivo`,`Modello_Dispositivo`),
-    FOREIGN KEY (`Marchio_Dispositivo`) REFERENCES `Dispositivo`(`Marchio`),
-    FOREIGN KEY (`Modello_Dispositivo`) REFERENCES `Dispositivo`(`Modello`),
-    FOREIGN KEY (`idCDN`) REFERENCES `ServerCDN`(`id`),
-) 
+    PRIMARY KEY (`Cliente`,`Film`),
+    FOREIGN KEY (`Cliente`) REFERENCES `Cliente`(`e-mail`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
 
-CREATE TABLE IF NOT EXISTS `Formati_Supportati`(
-    `Marchio_Dispositivo` VARCHAR(50) NOT NULL,
-    `Modello_Dispositivo`VARCHAR(50) NOT NULL,
-    `Formati`/*TO DO*/,
+    --Vincoli
+    CHECK (`Rating` BETWEEN 0.00 AND 10.00),
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Genere` (
+    `Nome` VARCHAR(100),
+    `Media` DECIMAL(4,2),
 
     --Chiavi
-    PRIMARY KEY (`Marchio_Dispositivo`,`Modello_Dispositivo`,`Formati`),
-    FOREIGN KEY (`Marchio_Dispositivo`) REFERENCES `Dispositivo`(`marchio`),
-    FOREIGN KEY (`Modello_Dispositivo`) REFERENCES `Dispositivo`(`modello`),
-    FOREIGN KEY (`Formati`) REFERENCES `Formati`(`Nome`),
+    PRIMARY KEY (`Nome`),
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
-)
+CREATE TABLE IF NOT EXISTS `Appartiene`(
+    `Genere` VARCHAR(100),
+    `Film` INT,
+
+    --Chiavi
+    PRIMARY KEY (`Genere`,`Film`),
+    FOREIGN KEY (`Genere`) REFERENCES `Genere`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Premi`(
+    `Nome` VARCHAR(100),
+    `importanza` DECIMAL (4,2),
+
+    --Chiavi
+    PRIMARY KEY (`Nome`),
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Premi_film`(
+    `Premi` VARCHAR(100),
+    `Film` INT,
+
+    --Chiavi
+    PRIMARY KEY (`Premi`,`Film`),
+    FOREIGN KEY (`Premi`) REFERENCES `Premi`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Registi_Attori` (
+    `id` INT AUTO_INCREMENT,
+    `Nome` VARCHAR(100) NOT NULL,
+    `Cognome` VARCHAR (100) NOT NULL,
+    `Data_di_nascita` DATE,
+
+    --Chiavi
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Registi`(
+    `Registi` INT,
+    `Rating` DECIMAL(4,2),
+
+    --Chiavi
+    PRIMARY KEY (`Registi`),
+    FOREIGN KEY (`Registi`) REFERENCES `Registi_Attori`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+
+    --Vincoli
+    CHECK (`Rating` BETWEEN 0.00 AND 10.00),
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Attori` (
+    `Attori` INT,
+    `Rating` DECIMAL(4,2),
+
+    --Chiavi
+    PRIMARY KEY (`Attori`),
+    FOREIGN KEY (`Attori`) REFERENCES `Registi_Attori`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+
+    --Vincoli
+    CHECK (`Rating` BETWEEN 0.00 AND 10.00),
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Premi_registi`(
+    `Registi` INT,
+    `Premi` VARCHAR(100),
+
+    --Chiavi
+    PRIMARY KEY (`Registi`,`Premi`),
+    FOREIGN KEY (`Registi`) REFERENCES `Registi_Attori`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Premi`) REFERENCES `Premi`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE,
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Premi_attori`(
+    `Attori` INT,
+    `Premi` VARCHAR(100),
+
+    --Chiavi
+    PRIMARY KEY (`Attori`,`Premi`),
+    FOREIGN KEY (`Attori`) REFERENCES `Registi_Attori`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Premi`) REFERENCES `Premi`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE,
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Direzione`(
+    `Registi` INT,
+    `Film` INT,
+
+    --Chiavi
+    PRIMARY KEY (`Registi`,`Film`),
+    FOREIGN KEY (`Registi`) REFERENCES `Registi`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Recitazione`(
+    `Attori` INT,
+    `Film` INT,
+
+    --Chiavi
+    PRIMARY KEY (`Attori`,`Film`),
+    FOREIGN KEY (`Attori`) REFERENCES `Attori`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Lingue` (
+    `Nome` CHAR(3), --ISO 639
+
+    --Chiavi
+    PRIMARY KEY(`Nome`),
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Sottotitolati`(
+    `Tracking` VARCHAR(260),
+    `Lingua` CHAR(3),
+
+    --Chiavi
+    PRIMARY KEY(`Tracking`,`Lingua`),
+    FOREIGN KEY (`Lingua`) REFERENCES `Lingua`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Tracking`) REFERENCES `Tracking`(`Path`) ON UPDATE CASCADE ON DELETE CASCADE,
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `Doppiati`(
+    `Tracking` VARCHAR(260),
+    `Lingua` CHAR(3),
+
+    --Chiavi
+    PRIMARY KEY(`Tracking`,`Lingua`),
+    FOREIGN KEY (`Lingua`) REFERENCES `Lingua`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Tracking`) REFERENCES `Tracking`(`Path`) ON UPDATE CASCADE ON DELETE CASCADE,
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
