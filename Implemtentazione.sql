@@ -1,6 +1,10 @@
 DROP DATABASE IF EXISTS `FilmSphere`;
 CREATE DATABASE `FilmSphere` DEFAULT CHARACTER SET utf8;
 USE `FilmSphere`;
+
+-- ------------- --
+-- AreaContenuti --
+-- ------------- --
 CREATE TABLE IF NOT EXISTS `Film` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `Anno_di_produzione` YEAR NOT NULL,
@@ -169,9 +173,18 @@ CREATE TABLE IF NOT EXISTS `Sottotitolati`(
     FOREIGN KEY (`Lingua`) REFERENCES `Lingue`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- AreaStreaming
--- ----------------------------
+CREATE TABLE IF NOT EXISTS `Doppiati` (
+    `Tracking` VARCHAR(260),
+    `Lingua` CHAR(3),
+
+    -- Chiavi
+    PRIMARY KEY (`Tracking`,`Lingua`),
+    FOREIGN KEY (`Lingua`) REFERENCES `Lingue`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+-- ------------- --
+-- AreaStreaming --
+-- ------------- --
 
 CREATE TABLE IF NOT EXISTS `ServerCDN` (
     `id` INT AUTO_INCREMENT,
@@ -223,9 +236,9 @@ CREATE TABLE IF NOT EXISTS `Distanza` (
     CHECK (`Distanza` BETWEEN 0.0 AND 40075.0)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
--- -------------------
--- Area Formati
--- -------------------
+-- ------------ --
+-- Area Formati --
+-- ------------ --
 
 CREATE TABLE IF NOT EXISTS `Formati`(
     `Nome` VARCHAR(4) PRIMARY KEY -- Estenzioni
@@ -286,9 +299,9 @@ CREATE TABLE IF NOT EXISTS `Formati_disponibili` (
     FOREIGN KEY (`Formati`) REFERENCES `Formati`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
--- ------------
--- AreaUtenti
--- ------------
+-- ---------- --
+-- AreaUtenti --
+-- ---------- --
 
 CREATE TABLE IF NOT EXISTS `Cliente` (
     `e-mail` VARCHAR(320) NOT NULL, -- Lunghezza massima e-mail
@@ -307,6 +320,7 @@ CREATE TABLE IF NOT EXISTS `Cliente` (
     CHECK (`e-mail` LIKE '%_@__%.__%')
     -- Controlla che contenga almeno un carattere prima e dopo il sombbolo '@' seguito da un punto 
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE IF NOT EXISTS `Visualizzazioni`(
     `Cliente` VARCHAR(320),
     `Film` INT,
@@ -346,7 +360,7 @@ CREATE TABLE IF NOT EXISTS `Carta` (
 
 CREATE TABLE IF NOT EXISTS `Abbonamenti` (
     `Tipologia` VARCHAR(8) NOT NULL,
-    `Risoluzione_max` VARCHAR(15) NOT NULL,
+    `Risoluzione_max` VARCHAR(15), -- NULL=tutte
     `Ore_max` SMALLINT, -- NULL=illimitato
     `Gigabyte_download` TINYINT, -- NULL=illimitato
     `Prezzo` FLOAT(4,2) DEFAULT 0.0 NOT NULL,
@@ -402,9 +416,9 @@ CREATE TABLE IF NOT EXISTS `Formati_Supportati`(
     FOREIGN KEY (`Formati`) REFERENCES `Formati`(`Nome`)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
--- -------------------
--- Chiavi esterne
--- -------------------
+-- -------------- --
+-- Chiavi esterne --
+-- -------------- --
 ALTER TABLE `Film`
 ADD FOREIGN KEY (`Prodotto`) REFERENCES `Regione_geografica`(`Nome`) ON UPDATE CASCADE ON DELETE CASCADE;
 
@@ -415,6 +429,9 @@ ALTER TABLE `Recensioni_critici`
 ADD FOREIGN KEY (`Cliente`) REFERENCES `Cliente`(`e-mail`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE `Sottotitolati`
+ADD FOREIGN KEY (`Tracking`) REFERENCES `Tracking`(`Path`) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE `Doppiati`
 ADD FOREIGN KEY (`Tracking`) REFERENCES `Tracking`(`Path`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE `ServerCDN`
@@ -428,3 +445,4 @@ ADD FOREIGN KEY (`Regione`) REFERENCES `Regione_geografica`(`Nome`) ON UPDATE CA
 
 ALTER TABLE `Formati_disponibili`
 ADD FOREIGN KEY (`Abbonamenti`) REFERENCES `Abbonamenti`(`Tipologia`) ON UPDATE CASCADE ON DELETE CASCADE;
+
