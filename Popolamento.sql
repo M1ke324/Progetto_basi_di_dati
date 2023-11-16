@@ -226,7 +226,7 @@ INSERT INTO `Tracking` (`Path`, `Lunghezza`, `Data_rilascio`, `Formati`, `Film`,
     ('/path/l_era_del_futuro.mkv', 135.0, '2018-01-01 00:00:00', 'mkv', 15, 2.7);
 
 -- Inserimento dati nella tabella Doppiati
-INSERT IGNORE INTO `Doppiati` (`Tracking`, `Lingua`) VALUES
+INSERT INTO `Doppiati` (`Tracking`, `Lingua`) VALUES
     ('/path/il_segreto_del_successo.mp4', 'ita'),
     ('/path/il_segreto_del_successo.mp4', 'eng'),
     ('/path/ridi_e_sorridi.mkv', 'ita'),
@@ -259,7 +259,7 @@ INSERT IGNORE INTO `Doppiati` (`Tracking`, `Lingua`) VALUES
     ('/path/l_era_del_futuro.mkv', 'eng');
 
 -- Inserimento dati nella tabella Sottotitolati
-INSERT IGNORE INTO `Sottotitolati` (`Tracking`, `Lingua`) VALUES
+INSERT INTO `Sottotitolati` (`Tracking`, `Lingua`) VALUES
     ('/path/il_segreto_del_successo.mp4', 'ita'),
     ('/path/il_segreto_del_successo.mp4', 'eng'),
     ('/path/ridi_e_sorridi.mkv', 'ita'),
