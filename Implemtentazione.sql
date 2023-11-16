@@ -374,10 +374,10 @@ CREATE TABLE IF NOT EXISTS `Fatturazione`(
     `Abbonamenti` VARCHAR(8) NOT NULL,
     `Validità` BOOLEAN DEFAULT TRUE,
     `Data_scadenza` DATE NOT NULL,
-    `Data_sottoscrizione` DATE /* TO DO DEFAULT CURRENT_DATE*/,
+    `Data_sottoscrizione` DATE /*TO DO DEFAULT CURRENT_DATE*/,
 
     -- Chiavi
-    PRIMARY KEY (`Carta`,`Abbonamenti`),
+    PRIMARY KEY (`Carta`,`Abbonamenti`,`Data_sottoscrizione`),
     FOREIGN KEY (`Carta`) REFERENCES `Carta`(`Numero`) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`Abbonamenti`) REFERENCES `Abbonamenti`(`Tipologia`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;

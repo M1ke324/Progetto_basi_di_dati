@@ -391,9 +391,9 @@ INSERT INTO `Fatturazione` (`Carta`, `Abbonamenti`, `Validità`, `Data_scadenza`
     (1234567890123457, 'ultimate', TRUE, '2025-04-30', '2023-10-15'),
     (2345678901234568, 'basic', TRUE, '2026-05-31', '2023-10-15'),
     (3456789012345679, 'premium', TRUE, '2027-08-31', '2023-10-15'),
-    (4567890123456780, 'pro', TRUE, '2025-11-30', '2023-10-15'),
-    (5678901234567891, 'deluxe', TRUE, '2024-03-31', '2023-10-15'),
-    (6789012345678902, 'ultimate', TRUE, '2025-06-30', '2023-10-15');
+    (4567890123456780, 'pro', TRUE, '2023-11-17', '2023-10-15'),
+    (5678901234567891, 'deluxe', TRUE, '2023-11-17', '2023-10-15'),
+    (6789012345678902, 'ultimate', TRUE, '2023-11-17', '2023-10-15');
 
 -- Inserimento dati nella tabella Formati_disponibili
 INSERT INTO `Formati_disponibili` (`Abbonamenti`, `Formati`) VALUES
