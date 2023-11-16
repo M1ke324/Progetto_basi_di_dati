@@ -1,6 +1,6 @@
 USE `FilmSphere`;
 
-DROP PROCEDURE IF EXISTS `AggiornaMediaVotiGenere`;
+DROP PROCEDURE IF EXISTS AggiornaMediaVotiGenere;
 DELIMITER //
 CREATE PROCEDURE AggiornaMediaVotiGenere()
 BEGIN
@@ -10,14 +10,14 @@ BEGIN
     DECLARE  M INT;
     DECLARE  c INT;
     -- Inizializzazione della variabile di controllo
-    SELECT COUNT(`Nome`) 
+    SELECT COUNT(Nome) 
     INTO  M
-    FROM `Genere`;
+    FROM Genere;
     SET  c= 0;
     -- Loop per iterare attraverso i generi
     WHILE  c <  M DO
         -- Recupero il nome del genere utilizzando LIMIT e OFFSET
-        SET  nomeGenere = (SELECT `Nome` FROM `Genere` LIMIT 1 OFFSET  c);
+        SET  nomeGenere = (SELECT Nome FROM Genere LIMIT 1 OFFSET  c);
 
         -- Calcolo della media dei voti per il genere
         SELECT AVG(Rating_media)
@@ -40,7 +40,7 @@ BEGIN
         SET SQL_SAFE_UPDATES=1;
 
         ma per sicurezza ho pensato di non disabilitare il safe update.
-        Aggiungendo il secondo controllo anche se inutile viene letto come una selezione sulla
+        Aggiungendo il secondo controllo, anche se inutile viene letto come una selezione sulla
         chiave primaria e il safe update non segnala errori
 
         */
