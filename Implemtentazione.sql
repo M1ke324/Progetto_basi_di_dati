@@ -446,3 +446,49 @@ ADD FOREIGN KEY (`Regione`) REFERENCES `Regione_geografica`(`Nome`) ON UPDATE CA
 ALTER TABLE `Formati_disponibili`
 ADD FOREIGN KEY (`Abbonamenti`) REFERENCES `Abbonamenti`(`Tipologia`) ON UPDATE CASCADE ON DELETE CASCADE;
 
+
+-- ------- --
+-- TRIGGER --
+-- ------- --
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_Log_connessioni
+BEFORE INSERT ON `Log_connessioni` FOR EACH ROW
+BEGIN
+    DECLARE idExists INT;
+
+    -- Controlla se l'idCDN esiste nella tabella ServerCDN
+    SELECT COUNT(*) INTO idExists
+    FROM `ServerCDN`
+    WHERE `id` = NEW.idCDN;
+
+    -- Se l'id non esiste, genera un errore
+    IF idExists = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'idCDN non presente in ServerCDN';
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_Connessioni_cdn
+BEFORE INSERT ON `Connessioni_cdn` FOR EACH ROW
+BEGIN
+    DECLARE idExists INT;
+
+    -- Controlla se l'id_film esiste nella tabella Film
+    SELECT COUNT(*) INTO idExists
+    FROM `Film`
+    WHERE `id` = NEW.id_film;
+
+    -- Se l'id_film non esiste, genera un errore
+    IF idExists = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'id_film non presente in Film';
+    END IF;
+END //
+
+DELIMITER ;
