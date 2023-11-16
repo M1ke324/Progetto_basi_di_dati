@@ -150,14 +150,14 @@ INSERT INTO `Premi_film` (`Film`, `Premi`) VALUES
 
 -- Inserimento dati nella tabella Genere
 INSERT INTO `Genere` (`Nome`, `Media`) VALUES
-    ('Azione', NULL),
-    ('Commedia', NULL),
-    ('Fantasy', NULL),
-    ('Drammatico', NULL),
-    ('Sci-fi', NULL),
-    ('Thriller', NULL),
-    ('Animazione', NULL),
-    ('Fantascienza', NULL);
+    ('Azione', 8.5),
+    ('Commedia', 6.7),
+    ('Fantasy', 9.8),
+    ('Drammatico', 8.5),
+    ('Sci-fi', 6.4),
+    ('Thriller', 3.2),
+    ('Animazione', 4.2),
+    ('Fantascienza', 9.2);
 
 -- Inserimento dati nella tabella Appartiene
 INSERT INTO `Appartiene` (`Genere`, `Film`) VALUES
@@ -187,7 +187,7 @@ INSERT INTO `Lingue` (`Nome`) VALUES
     ('por'); -- portoghese
 
 -- Inserimento dati nella tabella Formati
-INSERT INTO Formati (Nome) VALUES
+INSERT INTO `Formati` (`Nome`) VALUES
     ('mp4'),
     ('avi'),
     ('mkv'),
@@ -196,13 +196,13 @@ INSERT INTO Formati (Nome) VALUES
     ('wav');
 
 -- Inserimento dati nella tabella Audio
-INSERT INTO Audio (Nome, Qualita) VALUES
+INSERT INTO `Audio` (`Nome`, `Qualita`) VALUES
     ('mp3', 'alta'),
     ('flac', 'lossless'),
     ('wav', 'alta');
 
 -- Inserimento dati nella tabella Video
-INSERT INTO Video (Nome, Qualita, Bitrate, Rapporto_aspetto, Risoluzione) VALUES
+INSERT INTO `Video` (`Nome`, `Qualita`, `Bitrate`, `Rapporto_aspetto`, `Risoluzione`) VALUES
     ('mp4', 'alta', '10 Mbps', '16:9', '1920x1080'),
     ('avi', 'media', '5 Mbps', '4:3', '720x480'),
     ('mkv', 'alta', '15 Mbps', '16:9', '2560x1440');

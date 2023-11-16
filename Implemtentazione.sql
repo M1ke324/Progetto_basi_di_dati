@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `Direzione`(
 
     --  Chiavi
     PRIMARY KEY (`Registi`,`Film`),
-    FOREIGN KEY (`Registi`) REFERENCES `Registi`(`Registi`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Registi`) REFERENCES `Registi_Attori`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `Recitazione`(
 
     --  Chiavi
     PRIMARY KEY (`Attori`,`Film`),
-    FOREIGN KEY (`Attori`) REFERENCES `Attori`(`Attori`) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (`Attori`) REFERENCES `Registi_Attori`(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`Film`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
@@ -282,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `Tracking` (
     `Data_rilascio` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `Formati` VARCHAR(4),
     `Film` INT,
-    `Dimensione` FLOAT,
+    `Dimensione` FLOAT NOT NULL,
 
     -- Chiavi
     PRIMARY KEY(`Path`),
