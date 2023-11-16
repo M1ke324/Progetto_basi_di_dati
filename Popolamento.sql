@@ -17,7 +17,7 @@ INSERT INTO `Cliente` (`e-mail`, `Nome`, `Cognome`, `Data_di_nascita`, `Password
     ('cliente4@example.com', 'Giovanna', 'Ferrari', '1982-03-28', 'p4ssw0rd', TRUE, 'FR'),
     ('cliente5@example.com', 'Roberto', 'Russo', '1995-12-03', 'securepwd123', FALSE, 'DE'),
     ('cliente6@example.com', 'Laura', 'Conti', '1989-07-17', 'laurapass', TRUE, 'UK'),
-    ('cliente7@example.com', 'Marco', 'Marchetti', '1993-11-08', 'marcopwd', FALSE, 'IT'),
+    ('cliente7@example.com', 'Marco', 'Marchetti', '1993-10-08', 'marcopwd', FALSE, 'IT'),
     ('cliente8@example.com', 'Sara', 'Moretti', '1987-06-12', 'sarapassword', TRUE, 'ES'),
     ('cliente9@example.com', 'Andrea', 'Amato', '1996-04-25', 'andreapass', FALSE, 'DE'),
     ('cliente10@example.com', 'Elena', 'Esposito', '1980-09-30', 'elenapwd', TRUE, 'FR'),
@@ -45,7 +45,7 @@ INSERT INTO `Film` (`Anno_di_produzione`, `Descrizione`, `Rating_media`, `Durata
     (2021, 'Azione e mistero', 7.8, 130.5, 'Codice segreto', 'ES'),
     (2018, 'Fantascienza intrigante', 8.3, 135.0, 'L era del futuro', 'DE');
 
--- Inserting data for clients with Critico = TRUE into Recensioni_critici
+-- Inserimento dati nella tabella Recensioni_critici
 INSERT INTO `Recensioni_critici` (`Cliente`, `Film`, `Rating`, `Descrizione`) VALUES
     ('cliente2@example.com', 1, 8.0, 'Molto interessante'),
     ('cliente4@example.com', 3, 9.5, 'Suspense ben gestito'),
@@ -55,7 +55,7 @@ INSERT INTO `Recensioni_critici` (`Cliente`, `Film`, `Rating`, `Descrizione`) VA
     ('cliente12@example.com', 12, 7.2, 'Divertente e leggero'),
     ('cliente14@example.com', 14, 9.0, 'Fantascienza intrigante');
 
--- Inserting data for clients with Critico = FALSE into Recensioni_utenti
+-- Inserimento dati nella tabella Recensioni_utenti
 INSERT INTO `Recensioni_utenti` (`Cliente`, `Film`, `Rating`, `Descrizione`) VALUES
     ('cliente1@example.com', 2, 7.5, 'Divertente e leggero'),
     ('cliente3@example.com', 4, 8.8, 'Davvero emozionante'),
@@ -66,7 +66,7 @@ INSERT INTO `Recensioni_utenti` (`Cliente`, `Film`, `Rating`, `Descrizione`) VAL
     ('cliente13@example.com', 13, 8.5, 'Azione e avventura'),
     ('cliente15@example.com', 15, 7.0, 'Fantascienza intrigante');
 
--- Inserting data into Registi_Attori
+-- Inserimento dati nella tabella Registi_Attori
 INSERT INTO `Registi_Attori` (`Nome`, `Cognome`, `Data_di_nascita`) VALUES
     ('Christopher', 'Nolan', '1970-07-30'),
     ('Quentin', 'Tarantino', '1963-03-27'),
@@ -84,7 +84,7 @@ INSERT INTO `Registi_Attori` (`Nome`, `Cognome`, `Data_di_nascita`) VALUES
     ('Tom', 'Hanks', '1956-07-09'),
     ('Emma', 'Stone', '1988-11-06');
 
--- Popolamento della tabella Registi
+-- Inserimento dati nella tabella Registi
 INSERT INTO `Registi` (`Registi`, `Rating`) VALUES
     (1, 9.0),  -- Christopher Nolan
     (2, 8.5),  -- Quentin Tarantino
@@ -92,7 +92,7 @@ INSERT INTO `Registi` (`Registi`, `Rating`) VALUES
     (4, 9.2),  -- Steven Spielberg
     (5, 8.8);  -- Kathryn Bigelow
 
--- Popolamento della tabella Attori
+-- Inserimento dati nella tabella Attori
 INSERT INTO `Attori` (`Attori`, `Rating`) VALUES
     (6, 8.5),  -- Greta Gerwig
     (7, 8.3),  -- Alfonso Cuarón
@@ -100,7 +100,7 @@ INSERT INTO `Attori` (`Attori`, `Rating`) VALUES
     (9, 8.2),  -- Sofia Coppola
     (10, 8.9); -- Denis Villeneuve
 
--- Associazione di alcuni registi con attori nella tabella Direzione
+-- Inserimento dati nella tabella Direzione
 INSERT INTO `Direzione` (`Registi`, `Film`) VALUES
     (1, 1),  -- Christopher Nolan ha diretto "Il segreto del successo"
     (2, 2),  -- Quentin Tarantino ha diretto "Ridi e sorridi"
@@ -108,7 +108,7 @@ INSERT INTO `Direzione` (`Registi`, `Film`) VALUES
     (4, 6),  -- Steven Spielberg ha diretto "Il regno perduto"
     (5, 9);  -- Kathryn Bigelow ha diretto "Oltre il limite"
 
--- Associazione di alcuni attori con film nella tabella Recitazione
+-- Inserimento dati nella tabella Recitazione
 INSERT INTO `Recitazione` (`Attori`, `Film`) VALUES
     (6, 2),   -- Greta Gerwig ha recitato in "Ridi e sorridi"
     (7, 4),   -- Alfonso Cuarón ha recitato in "Il regno perduto"
@@ -116,7 +116,7 @@ INSERT INTO `Recitazione` (`Attori`, `Film`) VALUES
     (9, 10),  -- Sofia Coppola ha recitato in "Psicologico e coinvolgente"
     (10, 13); -- Denis Villeneuve ha recitato in "Il caso enigmatico"
 
--- Popolamento della tabella Premi
+-- Inserimento dati nella tabella Premi
 INSERT INTO `Premi` (`Nome`, `importanza`) VALUES
     ('Oscar', 9.5),
     ('Golden Globe', 8.8),
@@ -124,7 +124,7 @@ INSERT INTO `Premi` (`Nome`, `importanza`) VALUES
     ('Cannes Film Festival', 8.9),
     ('Venice Film Festival', 8.6);
 
--- Associazione di alcuni registi con premi nella tabella Premi_registi
+-- Inserimento dati nella tabella Premi_registi
 INSERT INTO `Premi_registi` (`Registi`, `Premi`) VALUES
     (1, 'Oscar'),   -- Christopher Nolan ha vinto un Oscar
     (2, 'Golden Globe'),   -- Quentin Tarantino ha vinto un Golden Globe
@@ -132,7 +132,7 @@ INSERT INTO `Premi_registi` (`Registi`, `Premi`) VALUES
     (4, 'Cannes Film Festival'),   -- Steven Spielberg ha vinto a Cannes
     (5, 'Venice Film Festival');  -- Kathryn Bigelow ha vinto a Venezia
 
--- Associazione di alcuni attori con premi nella tabella Premi_attori
+-- Inserimento dati nella tabella Film Premi_attori
 INSERT INTO `Premi_attori` (`Attori`, `Premi`) VALUES
     (6, 'Oscar'),   -- Greta Gerwig ha vinto un Oscar
     (7, 'Golden Globe'),   -- Alfonso Cuarón ha vinto un Golden Globe
@@ -148,7 +148,7 @@ INSERT INTO `Premi_film` (`Film`, `Premi`) VALUES
     (9, 'Cannes Film Festival'),   -- "Oltre il limite" ha vinto a Cannes
     (10, 'Venice Film Festival');  -- "Psicologico e coinvolgente" ha vinto a Venezia
 
--- Popolamento della tabella Genere con i generi presenti in Appartiene
+-- Inserimento dati nella tabella Genere
 INSERT INTO `Genere` (`Nome`, `Media`) VALUES
     ('Azione', NULL),
     ('Commedia', NULL),
@@ -159,7 +159,7 @@ INSERT INTO `Genere` (`Nome`, `Media`) VALUES
     ('Animazione', NULL),
     ('Fantascienza', NULL);
 
--- Popolamento della tabella Appartiene per ogni film
+-- Inserimento dati nella tabella Appartiene
 INSERT INTO `Appartiene` (`Genere`, `Film`) VALUES
     ('Azione', 1),   -- "Il segreto del successo" è azione
     ('Commedia', 2),  -- "Ridi e sorridi" è commedia
@@ -177,7 +177,7 @@ INSERT INTO `Appartiene` (`Genere`, `Film`) VALUES
     ('Azione', 14),   -- "Codice segreto" è azione
     ('Fantascienza', 15);-- "L'era del futuro" è fantascienza
 
--- Popolamento della tabella Lingue
+-- Inserimento dati nella tabella Lingue
 INSERT INTO `Lingue` (`Nome`) VALUES
     ('ita'), -- italiano
     ('eng'), -- inglese
@@ -186,7 +186,7 @@ INSERT INTO `Lingue` (`Nome`) VALUES
     ('deu'), -- tedesco
     ('por'); -- portoghese
 
--- Inserisci dati nella tabella Formati
+-- Inserimento dati nella tabella Formati
 INSERT INTO Formati (Nome) VALUES
     ('mp4'),
     ('avi'),
@@ -195,19 +195,19 @@ INSERT INTO Formati (Nome) VALUES
     ('flac'),
     ('wav');
 
--- Inserisci dati nella tabella Audio (se non esistono già)
+-- Inserimento dati nella tabella Audio
 INSERT INTO Audio (Nome, Qualita) VALUES
     ('mp3', 'alta'),
     ('flac', 'lossless'),
     ('wav', 'alta');
 
--- Inserisci dati nella tabella Video (se non esistono già)
+-- Inserimento dati nella tabella Video
 INSERT INTO Video (Nome, Qualita, Bitrate, Rapporto_aspetto, Risoluzione) VALUES
     ('mp4', 'alta', '10 Mbps', '16:9', '1920x1080'),
     ('avi', 'media', '5 Mbps', '4:3', '720x480'),
     ('mkv', 'alta', '15 Mbps', '16:9', '2560x1440');
 
--- Popolamento della tabella Tracking
+-- Inserimento dati nella tabella Tracking
 INSERT INTO `Tracking` (`Path`, `Lunghezza`, `Data_rilascio`, `Formati`, `Film`, `Dimensione`) VALUES
     ('/path/il_segreto_del_successo.mp4', 120.5, '2020-01-01 00:00:00', 'mp4', 1, 2.5),
     ('/path/ridi_e_sorridi.mkv', 95.0, '2018-01-01 00:00:00', 'mkv', 2, 1.8),
@@ -225,7 +225,7 @@ INSERT INTO `Tracking` (`Path`, `Lunghezza`, `Data_rilascio`, `Formati`, `Film`,
     ('/path/codice_segreto.mp4', 130.5, '2021-01-01 00:00:00', 'mp4', 14, 2.6),
     ('/path/l_era_del_futuro.mkv', 135.0, '2018-01-01 00:00:00', 'mkv', 15, 2.7);
 
--- Popolamento della tabella Doppiati
+-- Inserimento dati nella tabella Doppiati
 INSERT IGNORE INTO `Doppiati` (`Tracking`, `Lingua`) VALUES
     ('/path/il_segreto_del_successo.mp4', 'ita'),
     ('/path/il_segreto_del_successo.mp4', 'eng'),
@@ -258,8 +258,7 @@ INSERT IGNORE INTO `Doppiati` (`Tracking`, `Lingua`) VALUES
     ('/path/l_era_del_futuro.mkv', 'ita'),
     ('/path/l_era_del_futuro.mkv', 'eng');
 
-    -- Popolamento della tabella Sottotitolati
-
+-- Inserimento dati nella tabella Sottotitolati
 INSERT IGNORE INTO `Sottotitolati` (`Tracking`, `Lingua`) VALUES
     ('/path/il_segreto_del_successo.mp4', 'ita'),
     ('/path/il_segreto_del_successo.mp4', 'eng'),
@@ -292,8 +291,7 @@ INSERT IGNORE INTO `Sottotitolati` (`Tracking`, `Lingua`) VALUES
     ('/path/l_era_del_futuro.mkv', 'ita'),
     ('/path/l_era_del_futuro.mkv', 'eng');
 
-    -- Inserimento dati nella tabella Restrizioni
-
+-- Inserimento dati nella tabella Restrizioni
 INSERT INTO `Restrizioni` (`Film`, `Formato`, `Regione`) VALUES
     (1, 'mp4', 'IT'), -- "Il segreto del successo" in formato mp4 per l'Italia
     (2, 'mkv', 'US'), -- "Ridi e sorridi" in formato mkv per gli Stati Uniti
@@ -313,23 +311,34 @@ INSERT INTO `Restrizioni` (`Film`, `Formato`, `Regione`) VALUES
 
 -- Inserimento dati nella tabella Visualizzazioni
 INSERT INTO `Visualizzazioni` (`Cliente`, `Film`, `Numero_visualizzazioni`) VALUES
-    ('cliente1@example.com', 2, 1),   -- Mario Rossi ha visualizzato "Ridi e sorridi"
-    ('cliente2@example.com', 1, 1),   -- Anna Bianchi ha visualizzato "Il segreto del successo"
-    ('cliente3@example.com', 4, 1),   -- Luigi Verdi ha visualizzato "Ritorno a casa"
-    ('cliente4@example.com', 3, 1),   -- Giovanna Ferrari ha visualizzato "Nel buio della notte"
-    ('cliente5@example.com', 5, 1),   -- Roberto Russo ha visualizzato "Fuga adrenalinica"
-    ('cliente6@example.com', 6, 1),   -- Laura Conti ha visualizzato "Il regno perduto"
-    ('cliente7@example.com', 7, 1),   -- Marco Marchetti ha visualizzato "Amore a prima vista"
-    ('cliente8@example.com', 8, 1),   -- Sara Moretti ha visualizzato "Viaggio interstellare"
-    ('cliente9@example.com', 9, 1),   -- Andrea Amato ha visualizzato "Il caso enigmatico"
-    ('cliente10@example.com', 10, 1), -- Elena Esposito ha visualizzato "Oltre il limite"
-    ('cliente11@example.com', 11, 1), -- Paolo Poli ha visualizzato "Il viaggio fantastico"
-    ('cliente12@example.com', 12, 1), -- Simona Santoro ha visualizzato "Risate in vacanza"
-    ('cliente13@example.com', 13, 1), -- Antonio Avella ha visualizzato "Epopea del passato"
-    ('cliente14@example.com', 14, 1), -- Cristina Coppola ha visualizzato "Codice segreto"
-    ('cliente15@example.com', 15, 1); -- Davide De Luca ha visualizzato "L'era del futuro"
+    ('cliente1@example.com', 2, 1),
+    ('cliente2@example.com', 1, 1),
+    ('cliente3@example.com', 4, 1),
+    ('cliente4@example.com', 3, 1),
+    ('cliente5@example.com', 5, 1),
+    ('cliente6@example.com', 6, 1),
+    ('cliente7@example.com', 7, 1),
+    ('cliente8@example.com', 8, 1),
+    ('cliente9@example.com', 9, 1),
+    ('cliente10@example.com', 10, 1),
+    ('cliente11@example.com', 11, 1),
+    ('cliente12@example.com', 12, 1),
+    ('cliente13@example.com', 13, 1),
+    ('cliente14@example.com', 14, 1),
+    ('cliente15@example.com', 15, 1),
+    ('cliente5@example.com', 15, 1),
+    ('cliente6@example.com', 14, 1),
+    ('cliente7@example.com', 13, 1),
+    ('cliente8@example.com', 12, 1),
+    ('cliente9@example.com', 11, 1),
+    ('cliente10@example.com', 4, 1),
+    ('cliente11@example.com', 9, 1),
+    ('cliente12@example.com', 8, 1),
+    ('cliente13@example.com', 7, 1),
+    ('cliente14@example.com', 6, 1),
+    ('cliente15@example.com', 5, 1);
 
--- Inserimento dati nella tabella Download (versione ridotta)
+-- Inserimento dati nella tabella Download
 INSERT INTO `Download` (`Cliente`, `Film`) VALUES
     ('cliente1@example.com', 2),   -- Mario Rossi ha scaricato "Ridi e sorridi"
     ('cliente2@example.com', 1),   -- Anna Bianchi ha scaricato "Il segreto del successo"
@@ -360,6 +369,7 @@ INSERT INTO `Carta` (`Numero`, `Anno_scadenza`, `Mese_scadenza`, `CVV`, `Default
     (5678901234567891, 2024, 3, 789, TRUE, 'cliente14@example.com'), -- Cristina Coppola
     (6789012345678902, 2025, 6, 234, TRUE, 'cliente15@example.com');  -- Davide De Luca
 
+-- Inserimento dati nella tabella Abbonamenti
 INSERT INTO `Abbonamenti` (`Tipologia`, `Risoluzione_max`, `Ore_max`, `Gigabyte_download`, `Prezzo`) VALUES
     ('basic',   '720',     5,     0, 0.0),
     ('premium', '1080',  100,    10, 12.90),
@@ -385,7 +395,7 @@ INSERT INTO `Fatturazione` (`Carta`, `Abbonamenti`, `Validità`, `Data_scadenza`
     (5678901234567891, 'deluxe', TRUE, '2024-03-31', '2023-10-15'),
     (6789012345678902, 'ultimate', TRUE, '2025-06-30', '2023-10-15');
 
--- Popolamento della tabella Formati_disponibili
+-- Inserimento dati nella tabella Formati_disponibili
 INSERT INTO `Formati_disponibili` (`Abbonamenti`, `Formati`) VALUES
     ('basic', 'mp4'),
     ('premium', 'mp4'),
@@ -404,7 +414,7 @@ INSERT INTO `Formati_disponibili` (`Abbonamenti`, `Formati`) VALUES
     ('ultimate', 'flac'),
     ('ultimate', 'wav');
 
--- Popolamento della tabella Dispositivo con più record
+-- Inserimento dati nella tabella Dispositivo
 INSERT INTO `Dispositivo` (`Marchio`, `Modello`, `Risoluzione`, `Rapporto_schermo`) VALUES
     ('Samsung', 'Galaxy S21', '1080x2400', '20:9'),
     ('Apple', 'iPhone 13', '1170x2532', '19.5:9'),
@@ -416,7 +426,7 @@ INSERT INTO `Dispositivo` (`Marchio`, `Modello`, `Risoluzione`, `Rapporto_scherm
     ('LG', 'G8 ThinQ', '1440x3120', '19.5:9'),
     ('Motorola', 'Moto G Power', '720x1600', '20:9');
 
--- Popolamento della tabella Formati_Supportati
+-- Inserimento dati nella tabella Formati_Supportati
 INSERT INTO `Formati_Supportati` (`Marchio_Dispositivo`, `Modello_Dispositivo`, `Formati`) VALUES
     ('Samsung', 'Galaxy S21', 'mp4'),
     ('Samsung', 'Galaxy S21', 'avi'),
@@ -467,9 +477,8 @@ INSERT INTO `Formati_Supportati` (`Marchio_Dispositivo`, `Modello_Dispositivo`, 
     ('Motorola', 'Moto G Power', 'flac'),
     ('Motorola', 'Moto G Power', 'wav');
 
--- Popola la tabella ServerCDN con riferimenti alle regioni geografiche
-INSERT INTO `ServerCDN` (`Larghezza_banda`, `Max_capacita_trasmissione`, `Detiene`, `Posizione`)
-VALUES
+-- Inserimento dati nella tabella ServerCDN
+INSERT INTO `ServerCDN` (`Larghezza_banda`, `Max_capacita_trasmissione`, `Detiene`, `Posizione`) VALUES
     (1000, 5000, 'IT', POINT(12.4964, 41.9028)), -- Esempio di posizione per l'Italia
     (2000, 10000, 'US', POINT(-77.0369, 38.9072)), -- Esempio di posizione per gli Stati Uniti
     (1500, 7500, 'ES', POINT(-3.7038, 40.4168)), -- Esempio di posizione per la Spagna
@@ -477,6 +486,7 @@ VALUES
     (1300, 7000, 'DE', POINT(13.4050, 52.5200)), -- Esempio di posizione per la Germania
     (1100, 5500, 'UK', POINT(-0.1276, 51.5074)); -- Esempio di posizione per il Regno Unito
 
+-- Inserimento dati nella tabella Distanza
 INSERT INTO `Distanza` (`ServerCDN`, `Regione_geografica`, `Distanza`) VALUES
     (1, 'IT', 0),  -- Distanza plausibile tra il ServerCDN 1 e l'Italia (esempio: 500 km)
     (1, 'US', 8000), -- Distanza plausibile tra il ServerCDN 1 e gli Stati Uniti
@@ -520,20 +530,49 @@ INSERT INTO `Distanza` (`ServerCDN`, `Regione_geografica`, `Distanza`) VALUES
     (6, 'DE', 3500), -- Distanza plausibile tra il ServerCDN 6 e la Germania
     (6, 'UK', 0); -- Distanza plausibile tra il ServerCDN 6 e il Regno Unito
 
+-- Inserimento dati nella tabella Connessioni_cdn
 INSERT INTO `Connessioni_cdn` (`Server`, `Cliente`, `Trasmissione_in_uso`, `Larghezza_banda`, `id_film`) VALUES
-    (1, 'cliente1@example.com', 0, 0, 1),
-    (2, 'cliente2@example.com', 0, 0, 2),
-    (3, 'cliente3@example.com', 0, 0, 3),
-    (4, 'cliente4@example.com', 0, 0, 4),
-    (5, 'cliente5@example.com', 1, 1300, 5), -- Cliente 5, ServerCDN 5, Film 5, Trasmissione: 1, Larghezza di banda: 1300
-    (6, 'cliente6@example.com', 1, 1100, 6), -- Cliente 6, ServerCDN 6, Film 6, Trasmissione: 1, Larghezza di banda: 1100
-    (1, 'cliente7@example.com', 1, 900, 7),  -- Cliente 7, ServerCDN 1, Film 7, Trasmissione: 1, Larghezza di banda: 900
-    (2, 'cliente8@example.com', 1, 1200, 8), -- Cliente 8, ServerCDN 2, Film 8, Trasmissione: 1, Larghezza di banda: 1200
-    (3, 'cliente9@example.com', 1, 1000, 9), -- Cliente 9, ServerCDN 3, Film 9, Trasmissione: 1, Larghezza di banda: 1000
-    (4, 'cliente10@example.com', 1, 800, 10), -- Cliente 10, ServerCDN 4, Film 10, Trasmissione: 1, Larghezza di banda: 800
-    (5, 'cliente11@example.com', 1, 1100, 11), -- Cliente 11, ServerCDN 5, Film 11, Trasmissione: 1, Larghezza di banda: 1100
-    (6, 'cliente12@example.com', 1, 1300, 12), -- Cliente 12, ServerCDN 6, Film 12, Trasmissione: 1, Larghezza di banda: 1300
-    (1, 'cliente13@example.com', 1, 1000, 13), -- Cliente 13, ServerCDN 1, Film 13, Trasmissione: 1, Larghezza di banda: 1000
-    (2, 'cliente14@example.com', 1, 1200, 14), -- Cliente 14, ServerCDN 2, Film 14, Trasmissione: 1, Larghezza di banda: 1200
-    (3, 'cliente15@example.com', 1, 900, 15); -- Cliente 15, ServerCDN 3, Film 15, Trasmissione: 1, Larghezza di banda: 900
+    (1, 'cliente1@example.com', 0, 0, 1), -- Cliente 1 Film precaricato
+    (2, 'cliente2@example.com', 0, 0, 2), -- Cliente 2 Film precaricato
+    (3, 'cliente3@example.com', 0, 0, 3), -- Cliente 3 Film precaricato
+    (4, 'cliente4@example.com', 0, 0, 4), -- Cliente 4 Film precaricato
+    (5, 'cliente5@example.com', 1, 1300, 15), -- Cliente 5, ServerCDN 5, Film 5, Trasmissione: 1, Larghezza di banda: 1300
+    (6, 'cliente6@example.com', 1, 1100, 14), -- Cliente 6, ServerCDN 6, Film 6, Trasmissione: 1, Larghezza di banda: 1100
+    (1, 'cliente7@example.com', 1, 900, 13),  -- Cliente 7, ServerCDN 1, Film 7, Trasmissione: 1, Larghezza di banda: 900
+    (2, 'cliente8@example.com', 1, 1200, 12), -- Cliente 8, ServerCDN 2, Film 8, Trasmissione: 1, Larghezza di banda: 1200
+    (3, 'cliente9@example.com', 1, 1000, 11), -- Cliente 9, ServerCDN 3, Film 9, Trasmissione: 1, Larghezza di banda: 1000
+    (4, 'cliente10@example.com', 1, 800, 4), -- Cliente 10, ServerCDN 4, Film 10, Trasmissione: 1, Larghezza di banda: 800
+    (5, 'cliente11@example.com', 1, 1100, 9), -- Cliente 11, ServerCDN 5, Film 11, Trasmissione: 1, Larghezza di banda: 1100
+    (6, 'cliente12@example.com', 1, 1300, 8), -- Cliente 12, ServerCDN 6, Film 12, Trasmissione: 1, Larghezza di banda: 1300
+    (1, 'cliente13@example.com', 1, 1000, 7), -- Cliente 13, ServerCDN 1, Film 13, Trasmissione: 1, Larghezza di banda: 1000
+    (2, 'cliente14@example.com', 1, 1200, 6), -- Cliente 14, ServerCDN 2, Film 14, Trasmissione: 1, Larghezza di banda: 1200
+    (3, 'cliente15@example.com', 1, 900, 5); -- Cliente 15, ServerCDN 3, Film 15, Trasmissione: 1, Larghezza di banda: 900
 
+-- Inserimento dati nella tabella Log_connessioni
+INSERT INTO `Log_connessioni` (`Marchio_Dispositivo`, `Modello_Dispositivo`, `Cliente`, `idCDN`, `indirizzo_ip`, `ora_data_inizio_connessione`, `ora_data_fine_connessione`) VALUES
+    ('Samsung', 'Galaxy S21', 'cliente1@example.com', 1, INET_ATON('192.168.1.1'), '2023-10-15T08:00:00', '2023-10-15T08:30:00'),
+    ('Apple', 'iPhone 13', 'cliente2@example.com', 2, INET_ATON('192.168.1.2'), '2023-10-15T09:00:00', '2023-10-15T09:15:00'),
+    ('Sony', 'Xperia 1 III', 'cliente3@example.com', 3, INET_ATON('192.168.1.3'), '2023-10-15T09:45:00', '2023-10-15T10:00:00'),
+    ('Google', 'Pixel 6', 'cliente4@example.com', 4, INET_ATON('192.168.1.4'), '2023-10-15T11:30:00', '2023-10-15T11:45:00'),
+    ('OnePlus', '9 Pro', 'cliente5@example.com', 5, INET_ATON('192.168.1.5'), '2023-10-15T12:15:00', '2023-10-15T12:30:00'),
+    ('Huawei', 'P40 Pro', 'cliente6@example.com', 6, INET_ATON('192.168.1.6'), '2023-10-15T13:00:00', '2023-10-15T13:15:00'),
+    ('Xiaomi', 'Mi 11', 'cliente7@example.com', 1, INET_ATON('192.168.1.7'), '2023-10-15T13:45:00', '2023-10-15T14:00:00'),
+    ('LG', 'G8 ThinQ', 'cliente8@example.com', 2, INET_ATON('192.168.1.8'), '2023-10-15T15:30:00', '2023-10-15T15:45:00'),
+    ('Motorola', 'Moto G Power', 'cliente9@example.com', 3, INET_ATON('192.168.1.9'), '2023-10-15T16:15:00', '2023-10-15T16:30:00'),
+    ('Samsung', 'Galaxy S21', 'cliente10@example.com', 4, INET_ATON('192.168.1.10'), '2023-10-15T17:00:00', '2023-10-15T17:15:00'),
+    ('Apple', 'iPhone 13', 'cliente11@example.com', 5, INET_ATON('192.168.1.11'), '2023-10-15T17:45:00', '2023-10-15T18:00:00'),
+    ('Sony', 'Xperia 1 III', 'cliente12@example.com', 6, INET_ATON('192.168.1.12'), '2023-10-15T18:30:00', '2023-10-15T18:45:00'),
+    ('Google', 'Pixel 6', 'cliente13@example.com', 1, INET_ATON('192.168.1.13'), '2023-10-15T19:15:00', '2023-10-15T19:30:00'),
+    ('OnePlus', '9 Pro', 'cliente14@example.com', 2, INET_ATON('192.168.1.14'), '2023-10-15T20:00:00', '2023-10-15T20:15:00'),
+    ('Huawei', 'P40 Pro', 'cliente15@example.com', 3, INET_ATON('192.168.1.15'), '2023-10-15T20:45:00', '2023-10-15T21:00:00'),
+    ('OnePlus', '9 Pro', 'cliente5@example.com', 5, INET_ATON('192.168.1.5'), '2023-10-16T12:15:00', NULL),
+    ('Huawei', 'P40 Pro', 'cliente6@example.com', 6, INET_ATON('192.168.1.6'), '2023-10-16T13:00:00', NULL),
+    ('Xiaomi', 'Mi 11', 'cliente7@example.com', 1, INET_ATON('192.168.1.7'), '2023-10-16T13:45:00', NULL),
+    ('LG', 'G8 ThinQ', 'cliente8@example.com', 2, INET_ATON('192.168.1.8'), '2023-10-16T15:30:00', NULL),
+    ('Motorola', 'Moto G Power', 'cliente9@example.com', 3, INET_ATON('192.168.1.9'), '2023-10-16T16:15:00', NULL),
+    ('Samsung', 'Galaxy S21', 'cliente10@example.com', 4, INET_ATON('192.168.1.10'), '2023-10-16T17:00:00', NULL),
+    ('Apple', 'iPhone 13', 'cliente11@example.com', 5, INET_ATON('192.168.1.11'), '2023-10-16T17:45:00', NULL),
+    ('Sony', 'Xperia 1 III', 'cliente12@example.com', 6, INET_ATON('192.168.1.12'), '2023-10-16T18:30:00', NULL),
+    ('Google', 'Pixel 6', 'cliente13@example.com', 1, INET_ATON('192.168.1.13'), '2023-10-16T19:15:00', NULL),
+    ('OnePlus', '9 Pro', 'cliente14@example.com', 2, INET_ATON('192.168.1.14'), '2023-10-16T20:00:00', NULL),
+    ('Huawei', 'P40 Pro', 'cliente15@example.com', 3, INET_ATON('192.168.1.15'), '2023-10-16T20:45:00', NULL);
