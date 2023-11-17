@@ -400,7 +400,7 @@ CREATE TABLE IF NOT EXISTS `Log_connessioni`(
     `ora_data_fine_connessione` DATETIME,
 
     -- Chiavi
-    PRIMARY KEY (`Marchio_Dispositivo`,`Modello_Dispositivo`,`Cliente`,`ora_data_inizio_connessione`),
+    PRIMARY KEY (`ora_data_inizio_connessione`,`Marchio_Dispositivo`,`Modello_Dispositivo`,`Cliente`),
     FOREIGN KEY (`Marchio_Dispositivo`,`Modello_Dispositivo`) REFERENCES `Dispositivo`(`Marchio`,`Modello`) ON UPDATE CASCADE ON DELETE CASCADE
     -- FOREIGN KEY (`idCDN`) REFERENCES `ServerCDN`(`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
