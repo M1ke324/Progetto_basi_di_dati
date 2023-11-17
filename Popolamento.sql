@@ -479,7 +479,7 @@ INSERT INTO `Formati_Supportati` (`Marchio_Dispositivo`, `Modello_Dispositivo`, 
 
 -- Inserimento dati nella tabella ServerCDN
 INSERT INTO `ServerCDN` (`Larghezza_banda`, `Max_capacita_trasmissione`, `Detiene`, `Posizione`) VALUES
-    (1000, 5000, 'IT', POINT(12.4964, 41.9028)), -- Esempio di posizione per l'Italia
+    (1000, 15000, 'IT', POINT(12.4964, 41.9028)), -- Esempio di posizione per l'Italia
     (2000, 10000, 'US', POINT(-77.0369, 38.9072)), -- Esempio di posizione per gli Stati Uniti
     (1500, 7500, 'ES', POINT(-3.7038, 40.4168)), -- Esempio di posizione per la Spagna
     (1200, 6000, 'FR', POINT(2.3522, 48.8566)), -- Esempio di posizione per la Francia
