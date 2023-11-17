@@ -36,7 +36,7 @@ BEGIN
         SET SQL_SAFE_UPDATES=0;
         UPDATE Genere G
         SET Media =  ratingGenere
-        WHERE Nome =  nomeGenere AND Nome='asdasdasda';
+        WHERE Nome =  nomeGenere;
         SET SQL_SAFE_UPDATES=1;
 
         ma per sicurezza ho pensato di non disabilitare il safe update.

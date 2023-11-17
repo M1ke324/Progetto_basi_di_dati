@@ -17,7 +17,7 @@ BEGIN
         SET SQL_SAFE_UPDATES=0;
         UPDATE Fatturazione
         SET Validità = FALSE
-        WHERE Data_scadenza = CURDATE() AND Validità = TRUE AND Carta<> 0 ;
+        WHERE Data_scadenza = CURDATE() AND Validità = TRUE;
         SET SQL_SAFE_UPDATES=1;
 
         ma per sicurezza ho pensato di non disabilitare il safe update.

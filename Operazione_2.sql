@@ -63,7 +63,7 @@ BEGIN
                 SET SQL_SAFE_UPDATES=0;
                 UPDATE `Connessioni_cdn`
                 SET `Server` = cdnID
-                WHERE `Cliente` = idCliente AND Cliente<>'#############';
+                WHERE `Cliente` = idCliente;
                 SET SQL_SAFE_UPDATES=1;
 
                 ma per sicurezza ho pensato di non disabilitare il safe update.
