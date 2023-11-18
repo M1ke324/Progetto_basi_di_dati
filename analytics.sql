@@ -47,7 +47,7 @@ ORDER BY MinutiDiConnessione DESC;
     FROM clientiPiuConnessi ;
 */
 
--- Analytics 4
+-- Analytics 5
 CREATE VIEW  UtentiPerPaese AS
 SELECT situa, COUNT(`e-mail`) AS NumeroUtenti 
 FROM Cliente
