@@ -36,7 +36,6 @@ BEGIN
         SET banda_corrente= banda_massima -banda_corrente;
         SET trasmissione_corrente= capacita_massima -trasmissione_corrente;
 
-        -- Aggiorna Stato_di_accettazione a false se le connessioni attuali sono maggiori o uguali alla capacità massima
         IF trasmissione_corrente > Trasmissione_max AND banda_corrente > banda_max  THEN
             SET server_id=id_cdn;
             SET Trasmissione_max=trasmissione_corrente;

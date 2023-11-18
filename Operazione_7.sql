@@ -50,7 +50,20 @@ BEGIN
     
     DELETE FROM Connessioni_cdn
     WHERE Cliente=utente_email and Cliente<>'###############'; 
+    /*
+         Senza il secondo controllo palesemente e volutamente inutile il server dava errore
+         con la modalità safe update, oltre questa soluzione ce ne era un altra. Questa:
+        
+        SET SQL_SAFE_UPDATES=0;
+        DELETE FROM Connessioni_cdn
+        WHERE Cliente=utente_email;
+        SET SQL_SAFE_UPDATES=1;
 
+        ma per sicurezza ho pensato di non disabilitare il safe update.
+        Aggiungendo il secondo controllo, anche se inutile viene letto come una selezione sulla
+        chiave primaria e il safe update non segnala errori
+
+        */
     SELECT COUNT(*) INTO rowCount FROM `ServerCDN`;
     SET O =0;
 
