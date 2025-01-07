@@ -1,9 +1,6 @@
 # Progetto_basi_di_dati
 Progetto basi di dati
-A cura di Michele Castrucci e Carlo Motta
+Database for a movie streaming service
+Made by Michele Castrucci and Carlo Motta
 
-Voto finale 25/30
-
-Sbagliato:
-- Tavola degli accessi
-- Descrizione delle operazioni sulla documentazione errata, ma operazioni giuste
+(On the documentation the access table is wrong)
